@@ -16,6 +16,20 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>4.9.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>7.8.0</version>
+      <scope>test</scope>
+    </dependency>
+
+
+    <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-testng</artifactId>
       <version>7.12.0</version>
@@ -28,9 +42,78 @@
     </dependency>
 
     <dependency>
+      <groupId>io.github.bonigarcia</groupId>
+      <artifactId>webdrivermanager</artifactId>
+      <version>5.3.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.javafaker</groupId>
+      <artifactId>javafaker</artifactId>
+      <version>1.0.2</version>
+    </dependency>
+
+    <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-picocontainer</artifactId>
       <version>7.12.0</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>2.0.7</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>2.0.7</version>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <source>8</source>
+          <target>8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M6</version>
+        <configuration>
+          <testFailureIgnore>true</testFailureIgnore>
+          <parallel>methods</parallel>
+          <useUnlimitedThreads>true</useUnlimitedThreads>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>net.masterthought</groupId>
+        <artifactId>maven-cucumber-reporting</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>execution</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <projectName>Final_Project</projectName>
+              <outputDirectory>${project.build.directory}/cucumber-report-html</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>
