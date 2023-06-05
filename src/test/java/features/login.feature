@@ -1,10 +1,8 @@
 Feature: Login Feature
 
-
+@smoke2
   Scenario: user should be able to login with valid credentials
-    Given User in Saks Fifth Avenue homepage
-    And user clicks on Sign In button
-    And user enters valid email address
-    And user enters valid password
-    When user clicks on Sign In button again
+    Given User in Para Bank homepage
+    And user enters username and password
+    When user clicks on login button
     Then user should be able to successfully login

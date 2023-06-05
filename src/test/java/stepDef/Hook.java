@@ -9,7 +9,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.testng.util.Strings;
 
 public class Hook extends Config {
-    public static String url= "https://www.saksfifthavenue.com/";
+    public static String url= "https://parabank.parasoft.com/";
     public static String driverType = System.getProperty("browser");
 
     @Before
@@ -31,7 +31,7 @@ public class Hook extends Config {
             }
 
         } finally {
-//            driver.quit();
+         driver.close();
         }
     }
 }

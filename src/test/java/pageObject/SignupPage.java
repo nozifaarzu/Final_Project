@@ -19,56 +19,47 @@ public class SignupPage extends Config {
     }
 
     //locators
-    @FindBy(how=How.ID, using = "consent-close")
-    public WebElement closeBtn;
-//    @FindBy(how=How.XPATH, using = "/html/body/div[4]/div[1]/header/div[1]/div/div/div[3]/div/div/div/div/div[2]/button/span")
-//    public WebElement signInBtnLocator;
-//
-//    @FindBy(how=How.LINK_TEXT, using = "Create an Account")
-//    public WebElement createActBtnLocator;
-    @FindBy(how= How.NAME, using = "dwfrm_profile_customer_firstname")
+    @FindBy(how=How.LINK_TEXT, using = "Register")
+    public WebElement registerBtnLocator;
+    @FindBy(how= How.ID, using = "customer.firstName")
     public WebElement fnLocator;
-    @FindBy(how= How.NAME, using = "dwfrm_profile_customer_lastname")
+    @FindBy(how= How.ID, using = "customer.lastName")
     public WebElement lnLocator;
-    @FindBy(how= How.NAME, using = "dwfrm_profile_customer_email")
-    public WebElement emailLocator;
-    @FindBy(how= How.NAME, using = "dwfrm_profile_login_password")
-    public WebElement passwordLocator;
-    @FindBy(how= How.NAME, using = "dwfrm_profile_login_passwordconfirm")
-    public WebElement confirmPasswordLocator;
-    @FindBy(how= How.NAME, using = "dwfrm_profile_customer_zipcode")
+    @FindBy(how= How.ID, using = "customer.address.street")
+    public WebElement stAddressLocator;
+    @FindBy(how= How.ID, using = "customer.address.city")
+    public WebElement cityLocator;
+    @FindBy(how= How.ID, using = "customer.address.state")
+    public WebElement stateLocator;
+    @FindBy(how= How.ID, using = "customer.address.zipCode")
     public WebElement zipCodeLocator;
-    @FindBy(how= How.NAME, using = "dwfrm_profile_customer_phone")
+    @FindBy(how= How.ID, using = "customer.phoneNumber")
     public WebElement phoneNumLocator;
-    @FindBy(how= How.NAME, using = "save")
+    @FindBy(how= How.ID, using = "customer.ssn")
+    public WebElement ssnLocator;
+    @FindBy(how= How.ID, using = "customer.username")
+    public WebElement usernameLocator;
+    @FindBy(how= How.ID, using = "customer.password")
+    public WebElement passLocator;
+    @FindBy(how= How.ID, using = "repeatedPassword")
+    public WebElement confirmPassLocator;
+    @FindBy(how= How.XPATH, using = "//input[@value='Register']")
     public WebElement submitBtnLocator;
-
-    //this locator is for My Account page
-    @FindBy(how= How.XPATH, using = "//*[@id=maincontent]/div/div[2]/div/div/div[2]/span[1]")
-    public WebElement welcomeMsgLocator;
+    @FindBy(how= How.XPATH, using = "//h1[@class='title']")
+    public WebElement welcomeLocator;
 
 
     //java faker class object
     //to create random data
     Faker faker = new Faker();
+    String username = faker.name().username();
+    String fakePass = faker.internet().password(8,11,true,true,true);
+    String pass = fakePass+"a";
+
 
     // functions
-    public void clickCloseBtn(){
-        closeBtn.click();
-    }
-    public void clickCreateActBtn(){
-        // Locating the Main Menu (Parent element)
-        WebElement mainMenu = driver.findElement(By.xpath("/html/body/div[4]/div[1]/header/div[1]/div/div/div[3]/div/div/div/div/div[2]/button/span"));
-        //Instantiating Actions class
-        Actions actions = new Actions(driver);
-        //Hovering on main menu
-        actions.moveToElement(mainMenu);
-        // Locating the element from Sub Menu
-        WebElement subMenu = driver.findElement(By.xpath("/html/body/div[4]/div[1]/header/div[1]/div/div/div[3]/div/div/div/div/div[2]/div/a[2]"));
-        //To mouseover on sub menu
-        actions.moveToElement(subMenu);
-        //build()- used to compile all the actions into a single step
-        actions.click().build().perform();
+    public void clickRegisterBtn(){
+        registerBtnLocator.click();
     }
     public void enterFirstName(){
         fnLocator.sendKeys(faker.name().firstName());
@@ -76,28 +67,39 @@ public class SignupPage extends Config {
     public void enterLastName(){
         lnLocator.sendKeys(faker.name().lastName());
     }
-    public void enterEmail(){
-        emailLocator.sendKeys(faker.internet().emailAddress());
+    public void enterStAddress(){
+        stAddressLocator.sendKeys(faker.address().streetAddress());
     }
-    public void enterPasswordAndConfirmPassword(){
-        String fakePass = faker.internet().password(8,11,true,true,true);
-        String pass = fakePass+"a";
-        passwordLocator.sendKeys(pass);
-        confirmPasswordLocator.sendKeys(pass);
+    public void enterCity(){
+        cityLocator.sendKeys(faker.address().city());
+    }
+    public void enterState(){
+        stateLocator.sendKeys(faker.address().state());
     }
     public void enterZipCode(){
         zipCodeLocator.sendKeys(faker.address().zipCode());
     }
     public void enterPhoneNum(){
-        phoneNumLocator.sendKeys("5555555555");
+        phoneNumLocator.sendKeys(faker.phoneNumber().cellPhone());
     }
-    public void submitButton(){
+    public void enterSSN(){
+        ssnLocator.sendKeys(faker.number().digits(9));
+    }
+    public void enterUsername(){
+        usernameLocator.sendKeys(username);
+    }
+    public void enterPasswordAndConfirmPassword(){
+        passLocator.sendKeys(pass);
+        confirmPassLocator.sendKeys(pass);
+    }
+
+    public void clickSubmitBtn(){
         submitBtnLocator.click();
     }
 
     public void verifyWelcomeMsg(){
-        String welcome = welcomeMsgLocator.getText();
-        if(welcome.contains("Welcome,")){
+        String welcome = welcomeLocator.getText();
+        if(welcome.contains("Welcome")){
             System.out.println("User Successfully Logged In");
         }else {
             System.out.println("Login failed");

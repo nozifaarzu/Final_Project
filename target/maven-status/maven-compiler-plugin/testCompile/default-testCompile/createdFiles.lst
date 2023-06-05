@@ -5,3 +5,4 @@ stepDef\LoginSteps.class
 base\Config.class
 stepDef\SignupSteps.class
 TestRunner.class
+pageObject\LoginPage.class

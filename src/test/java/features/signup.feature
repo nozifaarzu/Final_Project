@@ -1,13 +1,14 @@
 Feature: Signup Feature
 
-  @signup
+  @smoke1
   Scenario: user should be able to create a brand new account with unique email address
-    Given User in Saks Fifth Avenue homepage
-    And user clicks close button of pop up
-    And user clicks on Create Account button by hovering over sign in button
+    Given User in Para Bank homepage
+    And user clicks on Register link
     And user enters first and last name
-    And user enters their valid and unique email address
+    And user enters address, city,state, and zipcode
+    And user enters phone number
+    And user enters social security number
+    And user enters username
     And user enters password and confirm password
-    And user enters zipcode and phone number
-    When user clicks on Create An Account button
-    Then user should be navigated to their My Account page
+    When user clicks on Register button
+    Then user should be successfully registered and logged in
