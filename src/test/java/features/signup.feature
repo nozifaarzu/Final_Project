@@ -1,6 +1,6 @@
 Feature: Signup Feature
 
-  @smoke1
+  @signup
   Scenario: user should be able to create a brand new account with unique email address
     Given User in Para Bank homepage
     And user clicks on Register link

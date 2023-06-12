@@ -2,10 +2,9 @@ package pageObject;
 
 import base.Config;
 import com.github.javafaker.Faker;
-import org.openqa.selenium.By;
+import io.opentelemetry.exporter.logging.SystemOutLogRecordExporter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -52,9 +51,12 @@ public class SignupPage extends Config {
     //java faker class object
     //to create random data
     Faker faker = new Faker();
-    String username = faker.name().username();
-    String fakePass = faker.internet().password(8,11,true,true,true);
-    String pass = fakePass+"a";
+    public String username = faker.name().username();
+
+    public String fakePass = faker.internet().password(8,11,true,true,true);
+    public String pass = fakePass+"a";
+
+
 
 
     // functions
@@ -86,9 +88,11 @@ public class SignupPage extends Config {
         ssnLocator.sendKeys(faker.number().digits(9));
     }
     public void enterUsername(){
+        System.out.println(username);
         usernameLocator.sendKeys(username);
     }
     public void enterPasswordAndConfirmPassword(){
+        System.out.println(pass);
         passLocator.sendKeys(pass);
         confirmPassLocator.sendKeys(pass);
     }

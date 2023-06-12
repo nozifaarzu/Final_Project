@@ -1,0 +1,17 @@
+-------------------------------------------------------------------------------
+Test set: TestRunner
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 6.097 s <<< FAILURE! - in TestRunner
+TestRunner.runScenario["user should be able to login with valid credentials", "Login Feature"](1)  Time elapsed: 5.053 s  <<< FAILURE!
+java.lang.IllegalArgumentException: Keys to send should be a not null CharSequence
+	at org.openqa.selenium.remote.RemoteWebElement.sendKeys(RemoteWebElement.java:98)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:52)
+	at jdk.proxy2/jdk.proxy2.$Proxy25.sendKeys(Unknown Source)
+	at pageObject.LoginPage.enterUsername(LoginPage.java:46)
+	at stepDef.LoginSteps.userEntersUsernameAndPassword(LoginSteps.java:15)
+	at ✽.user enters username and password(file:///C:/Users/anozi/Documents/Automation-Hasan/Final_Project/src/test/java/features/login.feature:6)
+

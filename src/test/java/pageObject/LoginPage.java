@@ -1,7 +1,6 @@
 package pageObject;
 
 import base.Config;
-import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +13,7 @@ public class LoginPage extends Config {
         PageFactory.initElements(driver, this);
         Config.driver=driver;
     }
+
 
     //locators
     @FindBy(how= How.NAME, using = "username")
@@ -28,14 +28,14 @@ public class LoginPage extends Config {
 
     // functions
     //create an object of signuppage class to access its attributes
-    SignupPage su = new SignupPage(driver);
+    SignupPage s = new SignupPage(driver);
     public void enterUsername(){
-        String un = su.username;
+        String un = s.username;
         usernameLocator.sendKeys(un);
     }
     public void enterPassword(){
-        String p = su.pass;
-        passwordLocator.sendKeys(p);
+       String p = s.pass;
+       passwordLocator.sendKeys(p);
     }
     public void clickLoginBtn(){
         loginBtnLocator.click();

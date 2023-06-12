@@ -1,6 +1,6 @@
 Feature: Login Feature
 
-@smoke2
+@login
   Scenario: user should be able to login with valid credentials
     Given User in Para Bank homepage
     And user enters username and password

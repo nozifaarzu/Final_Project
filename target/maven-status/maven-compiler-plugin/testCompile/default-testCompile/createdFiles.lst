@@ -1,4 +1,3 @@
-base\TestData.class
 pageObject\SignupPage.class
 stepDef\Hook.class
 stepDef\LoginSteps.class
