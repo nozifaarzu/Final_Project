@@ -52,7 +52,6 @@ public class SignupPage extends Config {
     //to create random data
     Faker faker = new Faker();
     public String username = faker.name().username();
-
     public String fakePass = faker.internet().password(8,11,true,true,true);
     public String pass = fakePass+"a";
 
